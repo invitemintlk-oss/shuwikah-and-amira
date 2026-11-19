@@ -1,8 +1,7 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Loader2, Send } from 'lucide-react';
-import { HeartDivider } from './Ornaments';
-import { fetchWishes, submitToSheet, type Wish } from './sheets';
+import { submitToSheet } from './sheets';
 import { still } from './still';
 
 const rise = (delay = 0) => ({
@@ -13,16 +12,9 @@ const rise = (delay = 0) => ({
 });
 
 export function Wishes({ guest }: { guest: string }) {
-  const [wishes, setWishes] = useState<Wish[]>([]);
   const [name, setName] = useState(guest);
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
-
-  useEffect(() => {
-    fetchWishes()
-      .then(setWishes)
-      .catch(() => {});
-  }, []);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
@@ -31,7 +23,6 @@ export function Wishes({ guest }: { guest: string }) {
     setStatus('sending');
     try {
       await submitToSheet('Wishes', wish);
-      setWishes((w) => [wish, ...w]);
       setMessage('');
       setStatus('done');
     } catch (err) {
@@ -73,25 +64,6 @@ export function Wishes({ guest }: { guest: string }) {
         {status === 'done' && <p className="form-ok">Jazakallah khair! Your wish has been sent.</p>}
         {status === 'error' && <p className="form-error">Something went wrong. Please try again.</p>}
       </motion.form>
-
-      {wishes.length > 0 && (
-        <div className="wish-list">
-          <HeartDivider width="min(60vw, 260px)" />
-          {wishes.map((w, i) => (
-            <motion.figure
-              key={`${w.name}-${i}`}
-              className="wish"
-              initial={still ? false : { opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <blockquote>“{w.message}”</blockquote>
-              <figcaption className="caps">{w.name}</figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      )}
     </section>
   );
 }
