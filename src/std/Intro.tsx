@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 const ease = [0.7, 0, 0.2, 1] as const;
 
-export function Intro({ onOpen }: { onOpen: () => void }) {
+export function Intro({ onOpen, guest }: { onOpen: () => void; guest: string }) {
   return (
     <motion.div
       className="intro"
@@ -33,14 +33,15 @@ export function Intro({ onOpen }: { onOpen: () => void }) {
         exit={{ opacity: 0, scale: 0.92 }}
         transition={{ duration: 0.6 }}
       >
-        <motion.p
+        <motion.div
           className="intro-kicker"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
         >
-          You have a message
-        </motion.p>
+          {guest && <span className="script intro-guest">Dear {guest}</span>}
+          <span>You have a message</span>
+        </motion.div>
 
         <motion.div
           className="seal"

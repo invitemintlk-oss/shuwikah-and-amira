@@ -13,6 +13,23 @@ export function HeartDivider({ width = 'min(46vw, 240px)' }: { width?: string })
   );
 }
 
+/** Thin gold rule with a small diamond knot — the divider used on the printed card. */
+export function DiamondDivider({ width = 'min(78vw, 380px)' }: { width?: string }) {
+  return (
+    <div className="orn-divider orn-diamond" style={{ width }}>
+      <span />
+      <svg viewBox="0 0 40 16" aria-hidden>
+        <path d="M20 1.5 L24.5 8 L20 14.5 L15.5 8 Z" fill="currentColor" />
+        <path d="M20 5.2 L22.2 8 L20 10.8 L17.8 8 Z" fill="#fbfbf6" />
+        <path d="M14 8 C 11 4.5, 8 4.5, 6 8 M26 8 C 29 4.5, 32 4.5, 34 8" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+        <circle cx="3" cy="8" r="1.5" fill="currentColor" />
+        <circle cx="37" cy="8" r="1.5" fill="currentColor" />
+      </svg>
+      <span />
+    </div>
+  );
+}
+
 export function Flourish({ flip = false }: { flip?: boolean }) {
   return (
     <svg

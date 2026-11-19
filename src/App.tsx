@@ -1,15 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Music, VolumeX } from 'lucide-react';
 import { Intro } from './std/Intro';
 import { Hero } from './std/Hero';
-import { DateReveal } from './std/DateReveal';
+import { Details } from './std/Details';
+import { Rsvp } from './std/Rsvp';
+import { Wishes } from './std/Wishes';
 import { Closing } from './std/Closing';
 import { FallingLeaves } from './std/FallingLeaves';
 import { still } from './std/still';
-
+import { readGuest } from './std/invite';
 
 export default function App() {
+  const guest = useMemo(readGuest, []);
   const [opened, setOpened] = useState(still);
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -41,7 +44,7 @@ export default function App() {
 
   return (
     <div className="std-root">
-      <AnimatePresence>{!opened && <Intro key="intro" onOpen={handleOpen} />}</AnimatePresence>
+      <AnimatePresence>{!opened && <Intro key="intro" onOpen={handleOpen} guest={guest} />}</AnimatePresence>
 
       {opened && (
         <>
@@ -60,8 +63,10 @@ export default function App() {
       )}
 
       <main className="std-main" aria-hidden={!opened}>
-        <Hero ready={opened} />
-        <DateReveal />
+        <Hero ready={opened} guest={guest} />
+        <Details />
+        <Rsvp guest={guest} />
+        <Wishes guest={guest} />
         <Closing />
       </main>
     </div>
