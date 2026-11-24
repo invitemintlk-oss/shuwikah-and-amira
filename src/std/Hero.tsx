@@ -31,6 +31,9 @@ export function Hero({ ready, guest }: { ready: boolean; guest: string }) {
 
       <div className="hero-inner">
         <motion.p className="bismillah" lang="ar" dir="rtl" {...up(ready, 0.9)}>
+          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+        </motion.p>
+        <motion.p className="ayah-ar" lang="ar" dir="rtl" {...up(ready, 1)}>
           وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا
           <br />
           وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً
