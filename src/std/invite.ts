@@ -29,7 +29,12 @@ export const VENUE = {
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Avenra+Garden+Hotel+Negombo',
 };
 
-export const RSVP_PHONES = ['0777651797', '0707651797'];
+/** `number` is what's shown; the `tel:` link strips the spaces. */
+export const RSVP_PHONES: { number: string; name?: string }[] = [
+  { number: '0777651797' },
+  { number: '0707651797' },
+  { number: '+974 5523 9443', name: 'Faleel Abdul Samad' },
+];
 
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const MONTHS = [

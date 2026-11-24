@@ -154,8 +154,8 @@ export function Rsvp({ guest }: { guest: string }) {
         <p className="caps rsvp-phones-label">RSVP</p>
         <div className="rsvp-phones-list">
           {RSVP_PHONES.map((p) => (
-            <a key={p} href={`tel:${p}`}>
-              <Phone size={14} /> {p}
+            <a key={p.number} href={`tel:${p.number.replace(/\s+/g, '')}`}>
+              <Phone size={14} /> {p.name ? `${p.name} · ${p.number}` : p.number}
             </a>
           ))}
         </div>
