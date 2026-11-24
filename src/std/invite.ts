@@ -94,21 +94,25 @@ export function toDisplayName(prefix: string, rawName: string): string {
 export const inviteLink = (origin: string, displayName: string) =>
   `${origin.replace(/\/+$/, '')}/${encodeURIComponent(displayName)}`;
 
-export const greeting = (displayName: string) => `Dear ${displayName} ❤️`;
+export const greeting = (displayName: string) => `Dear ${displayName},`;
 
 export const inviteMessage = (displayName: string, link: string) =>
   `${greeting(displayName)}
 
-With joyful hearts, we warmly invite you to celebrate one of the most special days of our lives as we begin our journey together.
+With joyful hearts, we warmly invite you to join us in celebrating one of the most special days of our lives as we begin this beautiful journey together. 🤍
 
-Please view our wedding invitation and all the event details through the link below 🌐:
+You can view our wedding reception invitation and all the event details through the personalised link below 🌐:
 
 ${link}
 
-Your presence would truly mean the world to us, and we would be honored to celebrate this beautiful moment together.
+Your presence would mean the world to us, and we would be truly honoured to have you share in this special occasion and celebrate this beautiful moment with us.
 
-With love,
-❤️ ${COUPLE.groom} & ${COUPLE.bride}`;
+Warm regards,
+
+${COUPLE.groomParents}
+
+On behalf of
+${COUPLE.groom} & ${COUPLE.bride} 🤍`;
 
 /** Reads the guest display name from `/{name}` (or the legacy `?prefix=&name=` links). */
 export function readGuest(): string {
