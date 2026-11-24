@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { COUPLE, EVENT } from './invite';
+import { Dua } from './Dua';
 import { still } from './still';
 
 const rise = (delay: number) => ({
@@ -26,6 +27,8 @@ export function Closing() {
         <p className="closing-follow-text">See you there</p>
         <span className="closing-rule" />
       </motion.div>
+
+      <Dua />
     </footer>
   );
 }

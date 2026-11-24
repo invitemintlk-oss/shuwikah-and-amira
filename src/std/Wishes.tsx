@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { ChevronDown, Loader2, Send } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Loader2, Send } from 'lucide-react';
 import { submitToSheet } from './sheets';
 import { still } from './still';
 
@@ -14,7 +14,6 @@ const rise = (delay = 0) => ({
 export function Wishes({ guest }: { guest: string }) {
   const [name, setName] = useState(guest);
   const [message, setMessage] = useState('');
-  const [showDua, setShowDua] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
   const submit = async (e: FormEvent) => {
@@ -65,41 +64,6 @@ export function Wishes({ guest }: { guest: string }) {
         {status === 'done' && <p className="form-ok">Jazakallah khair! Your wish has been sent.</p>}
         {status === 'error' && <p className="form-error">Something went wrong. Please try again.</p>}
       </motion.form>
-
-      <motion.div className="dua" {...rise(0.2)}>
-        <button
-          className="pill-btn"
-          type="button"
-          aria-expanded={showDua}
-          aria-controls="dua-text"
-          onClick={() => setShowDua((v) => !v)}
-        >
-          Dua for new wedded couple
-          <ChevronDown size={15} className={`dua-chevron ${showDua ? 'is-open' : ''}`} />
-        </button>
-
-        <AnimatePresence initial={false}>
-          {showDua && (
-            <motion.div
-              id="dua-text"
-              className="paper-card dua-card"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-            >
-              <p className="dua-ar" lang="ar" dir="rtl">
-                بَارَكَ ٱللَّٰهُ لَكَ وَبَارَكَ عَلَيْكَ
-                <br />
-                وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
-              </p>
-              <p className="dua-en">
-                “May Allah bless you, shower His blessings upon you, and unite you both in goodness.”
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
     </section>
   );
 }
