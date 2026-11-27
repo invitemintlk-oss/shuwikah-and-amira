@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { CalendarDays, CalendarPlus, Clock, MapPin, Navigation } from 'lucide-react';
 import { DiamondDivider, HeartDivider } from './Ornaments';
-import { CALENDAR_URL, EVENT, VENUE, longDate, monthName, weekday } from './invite';
+import { CALENDAR_URL, EVENT, RSVP_BY, VENUE, longDate, weekday } from './invite';
 import { still } from './still';
 
 const rise = (delay = 0) => ({
@@ -59,75 +59,21 @@ export function Details() {
       </motion.div>
 
       <motion.div className="details-cal" {...rise(0.1)}>
-        <Calendar />
+        <div className="paper-card rsvp-note">
+          <p className="caps section-kicker">Kindly respond</p>
+          <p className="rsvp-by">
+            Please confirm your attendance on or before
+            <strong>{RSVP_BY}</strong>
+          </p>
+          <a className="pill-btn" href="#rsvp">
+            RSVP now
+          </a>
+        </div>
         <Countdown />
       </motion.div>
 
       <img src="/leaves-bottom.png" alt="" className="leaf-art leaf-art-reveal" />
     </section>
-  );
-}
-
-function Calendar() {
-  const year = EVENT.getFullYear();
-  const month = EVENT.getMonth();
-  const firstDow = new Date(year, month, 1).getDay();
-  const days = new Date(year, month + 1, 0).getDate();
-  const cells: (number | null)[] = [
-    ...Array(firstDow).fill(null),
-    ...Array.from({ length: days }, (_, i) => i + 1),
-  ];
-
-  return (
-    <div className="cal">
-      <div className="cal-head">
-        <span className="script cal-month">{monthName(EVENT)}</span>
-        <span className="caps cal-year">{year}</span>
-      </div>
-      <div className="cal-grid">
-        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-          <span key={i} className="cal-dow">
-            {d}
-          </span>
-        ))}
-        {cells.map((n, i) => (
-          <span key={i} className={`cal-day ${n === EVENT.getDate() ? 'is-event' : ''}`}>
-            {n}
-            {n === EVENT.getDate() && (
-              <>
-                <svg className="cal-circle" viewBox="0 0 60 60" aria-hidden>
-                  <motion.path
-                    d="M30 6 C 46 5, 55 17, 54 31 C 53 46, 41 55, 28 54 C 14 53, 5 43, 6 29 C 7 16, 18 7, 33 8"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    initial={still ? false : { pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6, duration: 1.4, ease: 'easeInOut' }}
-                  />
-                </svg>
-                <motion.svg
-                  className="cal-heart"
-                  viewBox="0 0 24 24"
-                  aria-hidden
-                  initial={still ? false : { scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1.9, type: 'spring', bounce: 0.6 }}
-                >
-                  <path
-                    fill="currentColor"
-                    d="M12 21s-7.5-4.6-9.6-9.3C1 8.4 3.1 5 6.5 5c2 0 3.6 1.1 4.5 2.6C11.9 6.1 13.5 5 15.5 5 18.9 5 21 8.4 19.6 11.7 17.5 16.4 12 21 12 21z"
-                  />
-                </motion.svg>
-              </>
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
   );
 }
 

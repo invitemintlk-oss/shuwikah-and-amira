@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=Allura&family=Pinyon+Script&family=Cinzel:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 /* Palette taken from the watercolor card */
@@ -13,7 +13,8 @@
   --paper: #fbfbf6;          /* card paper */
   --paper-warm: #f6f4ec;
 
-  --script: "Allura", "Great Vibes", cursive;
+  --script: "Pinyon Script", "Allura", "Great Vibes", cursive;
+  --caps: "Cinzel", "Cormorant Garamond", Georgia, serif;
   --serif: "Cormorant Garamond", Georgia, serif;
 }
 
@@ -36,10 +37,10 @@ button { font: inherit; color: inherit; }
 
 .script { font-family: var(--script); font-weight: 400; }
 .caps {
-  font-family: var(--serif);
+  font-family: var(--caps);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
 }
 
 /* ───────── Ornaments ───────── */
@@ -682,72 +683,17 @@ button { font: inherit; color: inherit; }
 }
 .toast.is-on { transform: translate(-50%, 0); opacity: 1; }
 
-/* Calendar card */
-.cal {
+/* RSVP note (replaces the calendar) */
+.rsvp-note {
   width: min(100%, 380px);
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(184, 149, 90, 0.35);
-  border-radius: 6px;
-  padding: 22px 20px 20px;
-  box-shadow: 0 24px 50px -24px rgba(18, 60, 44, 0.35);
-  position: relative;
-}
-.cal::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 0.5px solid rgba(184, 149, 90, 0.3);
-  border-radius: 3px;
-  pointer-events: none;
-}
-.cal-head { display: flex; align-items: baseline; justify-content: center; gap: 12px; margin-bottom: 14px; }
-.cal-month { font-size: 40px; line-height: 1; }
-.cal-year { font-size: 13px; color: var(--gold-deep); }
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  row-gap: 4px;
+  padding: 26px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   text-align: center;
 }
-.cal-dow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--gold-deep);
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(184, 149, 90, 0.3);
-  margin-bottom: 6px;
-}
-.cal-day {
-  position: relative;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--emerald-soft);
-}
-.cal-day.is-event { color: var(--emerald); font-weight: 700; font-size: 19px; }
-.cal-circle {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--gold);
-  overflow: visible;
-}
-.cal-heart {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  right: -2px;
-  top: -6px;
-  color: #b4545a;
-}
+.rsvp-note .rsvp-by { margin-bottom: 14px; }
 
 /* Countdown */
 .countdown { margin-top: 40px; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 22px; }
@@ -808,7 +754,7 @@ button { font: inherit; color: inherit; }
   align-items: baseline;
 }
 
-/* ───────── Dua (end of closing) ───────── */
+/* ───────── Dua (below the wishes form) ───────── */
 .dua {
   position: relative;
   z-index: 2;
@@ -817,12 +763,7 @@ button { font: inherit; color: inherit; }
   align-items: center;
   margin-top: 36px;
 }
-.closing .dua .pill-btn {
-  background: transparent;
-  color: #fbf6e8;
-  border-color: var(--gold);
-  box-shadow: none;
-}
+
 .dua-chevron { transition: transform 0.35s ease; }
 .dua-chevron.is-open { transform: rotate(180deg); }
 .dua-card {
@@ -830,16 +771,16 @@ button { font: inherit; color: inherit; }
   width: min(100%, 520px);
   margin-top: 18px;
   text-align: center;
-  border: 1px solid rgba(232, 214, 174, 0.35);
+  border: 1px solid rgba(184, 149, 90, 0.35);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.7);
 }
 .dua-ar {
   margin: 22px 16px 8px;
   font-family: "Amiri", serif;
   font-size: clamp(20px, 5.4vw, 28px);
   line-height: 1.9;
-  color: #fbf6e8;
+  color: var(--emerald);
 }
 .dua-en {
   margin: 0 20px 22px;
@@ -847,5 +788,5 @@ button { font: inherit; color: inherit; }
   font-style: italic;
   font-size: clamp(15px, 4vw, 17px);
   line-height: 1.45;
-  color: var(--gold-light);
+  color: var(--emerald-soft);
 }

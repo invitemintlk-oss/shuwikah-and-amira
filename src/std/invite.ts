@@ -33,7 +33,7 @@ export const VENUE = {
 export const RSVP_PHONES: { number: string; name?: string }[] = [
   { number: '0777651797' },
   { number: '0707651797' },
-  { number: '+974 5523 9443', name: 'Faleel Abdul Samad' },
+  { number: '0725880846', name: 'Fathima Faleel' },
 ];
 
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -112,11 +112,11 @@ ${link}
 
 Your presence would mean the world to us, and we would be truly honoured to have you share in this special occasion and celebrate this beautiful moment with us.
 
-Warm regards,
+With warm regards,
 
 ${COUPLE.groomParents}
 
-On behalf of
+On behalf of the couple,
 ${COUPLE.groom} & ${COUPLE.bride} 🤍`;
 
 /** Reads the guest display name from `/{name}` (or the legacy `?prefix=&name=` links). */

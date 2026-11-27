@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Loader2, Send } from 'lucide-react';
+import { Dua } from './Dua';
 import { submitToSheet } from './sheets';
 import { still } from './still';
 
@@ -64,6 +65,8 @@ export function Wishes({ guest }: { guest: string }) {
         {status === 'done' && <p className="form-ok">Jazakallah khair! Your wish has been sent.</p>}
         {status === 'error' && <p className="form-error">Something went wrong. Please try again.</p>}
       </motion.form>
+
+      <Dua />
     </section>
   );
 }

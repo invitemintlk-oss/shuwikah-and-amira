@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Check, Loader2, Phone } from 'lucide-react';
 import { DiamondDivider } from './Ornaments';
-import { RSVP_BY, RSVP_DEADLINE, RSVP_PHONES } from './invite';
+import { RSVP_DEADLINE, RSVP_PHONES } from './invite';
 import { submitToSheet } from './sheets';
 import { still } from './still';
 
@@ -50,10 +50,6 @@ export function Rsvp({ guest }: { guest: string }) {
       <motion.div className="section-head" {...rise()}>
         <p className="caps section-kicker">Kindly respond</p>
         <h2 className="script section-title">RSVP</h2>
-        <p className="rsvp-by">
-          Please confirm your attendance on or before
-          <strong>{RSVP_BY}</strong>
-        </p>
       </motion.div>
 
       <motion.div className="paper-card form-card" {...rise(0.15)}>

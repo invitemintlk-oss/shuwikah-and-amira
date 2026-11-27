@@ -40,7 +40,6 @@ export function Intro({ onOpen, guest }: { onOpen: () => void; guest: string }) 
           transition={{ delay: 0.4, duration: 1 }}
         >
           {guest && <span className="script intro-guest">Dear {guest}</span>}
-          <span>You have a message</span>
         </motion.div>
 
         <motion.div
