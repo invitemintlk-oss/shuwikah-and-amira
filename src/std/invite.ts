@@ -32,7 +32,7 @@ export const VENUE = {
 /** `number` is what's shown; the `tel:` link strips the spaces. */
 export const RSVP_PHONES: { number: string; name?: string }[] = [
   { number: '0777651797' },
-  { number: '0707651797' },
+  { number: '0787651797' },
   { number: '0725880846', name: 'Fathima Faleel' },
 ];
 
